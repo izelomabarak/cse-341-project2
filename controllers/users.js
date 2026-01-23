@@ -49,7 +49,7 @@ const updateUser = async (req, res) => {
     };
     const response = await mongodb.getDatabase().db().collection('users').replaceOne({ _id: userId }, user); 
     if (response.modifiedCount > 0) {
-        res.status(200).json('The Updating od the User was successful');
+        res.status(200).json('The Updating of the User was successful');
     } else {
         res.status(500).json(response.error || 'Some error has hapen in the Updating of the User.')
     }
@@ -60,7 +60,7 @@ const deleteUser = async (req, res) => {
     const userId = new ObjectId(req.params.id);
     const response = await mongodb.getDatabase().db().collection('users').deleteOne({ _id: userId }); 
     if (response.deletedCount > 0) {
-        res.status(200).json('The Deleting od the User was successful');
+        res.status(200).json('The Deleting of the User was successful');
     } else {
         res.status(500).json(response.error || 'Some error has hapen Deleting the User.')
     }

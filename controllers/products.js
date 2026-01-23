@@ -57,7 +57,7 @@ const updateProduct = async (req, res) => {
     };
     const response = await mongodb.getDatabase().db().collection('products').replaceOne({ _id: productId }, product); 
     if (response.modifiedCount > 0) {
-        res.status(200).json('The Updating od the Product was successful');
+        res.status(200).json('The Updating of the Product was successful');
     } else {
         res.status(500).json(response.error || 'Some error has hapen in the Updating of the Product.')
     }
@@ -68,7 +68,7 @@ const deleteProduct = async (req, res) => {
     const productId = new ObjectId(req.params.id);
     const response = await mongodb.getDatabase().db().collection('products').deleteOne({ _id: productId }); 
     if (response.deletedCount > 0) {
-        res.status(200).json('The Deleting od the Product was successful');
+        res.status(200).json('The Deleting of the Product was successful');
     } else {
         res.status(500).json(response.error || 'Some error has hapen Deleting the Product.')
     }
