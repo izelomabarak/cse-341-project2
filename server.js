@@ -18,9 +18,15 @@ app.use((req, res, next) => {
 });
 app.use('/', require('./routes'));
 
+app.use(async (err, req, res, next) => {
+  res.setHeader('Content-Type', 'application/json')
+  res.status(500).json({error: 'Error', message: err.message,});
+});
+
 process.on('uncaughtException', (err, origin) => {
   console.log(process.stderr.fd, `Caught exception: ${err}\n` + `Exception origin: ${origin}`);
 });
+
 
 mongodb.initDb((err) => {
     if (err) {

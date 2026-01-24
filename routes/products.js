@@ -4,14 +4,16 @@ const router = express.Router();
 const usersController = require('../controllers/products');
 const validator = require('../controllers/validator.js')
 
-router.get('/', usersController.getAll);
+const errorHandeler = require('../utilities/error.js')
 
-router.get('/:id', usersController.getSingle);
+router.get('/', errorHandeler.handleErrors(usersController.getAll));
 
-router.post('/', validator.productRules(), validator.validate, usersController.createProduct);
+router.get('/:id', errorHandeler.handleErrors(usersController.getSingle));
 
-router.put('/:id', validator.productRules(), validator.validate, usersController.updateProduct);
+router.post('/', validator.productRules(), validator.validate, errorHandeler.handleErrors(usersController.createProduct));
 
-router.delete('/:id', usersController.deleteProduct);
+router.put('/:id', validator.productRules(), validator.validate, errorHandeler.handleErrors(usersController.updateProduct));
+
+router.delete('/:id', errorHandeler.handleErrors(usersController.deleteProduct));
 
 module.exports = router;
