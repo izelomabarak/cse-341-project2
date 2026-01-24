@@ -15,9 +15,7 @@ Content-Type: application/json
 {
     "firstName": "Ernandez",
     "lastName": "Cortez",
-    "email": "ernancortez.jss@gmail.com",
-    "favoriteColor": "brown",
-    "birthday": "17/03/1965"
+    "email": "ernancortez.jss@gmail.com"
 }
 
 ### Modifiy One User
@@ -27,9 +25,7 @@ Content-Type: application/json
 {
     "firstName": "Alfonso Izelo",
     "lastName": "Izelo",
-    "email": "josealfonsoim.lds@gmail.com",
-    "favoriteColor": "red",
-    "birthday": "20/05/2008"
+    "email": "josealfonsoim.lds@gmail.com"
 }
 
 ### Get All Products
@@ -43,11 +39,13 @@ POST http://localhost:3000/products/ HTTP/1.1
 Content-Type: application/json
 
 {
-    "firstName": "Ernandez",
-    "lastName": "Cortez",
-    "email": "ernancortez.jss@gmail.com",
-    "favoriteColor": "brown",
-    "birthday": "17/03/1965"
+    "name": "Apple MacBook Air M4 16GB",
+    "maker": "Apple Inc",
+    "country": "Vietnaamm",
+    "description": "A good and computer for study and work",
+    "price": "1000",
+    "stock": "5",
+    "category": "Electronics"
 }
 
 ### Modifiy One Product
@@ -55,11 +53,13 @@ PUT http://localhost:3000/products/696992254effa511e0807fcc HTTP/1.1
 Content-Type: application/json
 
 {
-    "firstName": "Alfonso Izelo",
-    "lastName": "Izelo",
-    "email": "josealfonsoim.lds@gmail.com",
-    "favoriteColor": "red",
-    "birthday": "20/05/2008"
+    "name": "Apple MacBook Air M4 16GB",
+    "maker": "Apple Inc",
+    "country": "Vietnaamm",
+    "description": "A good and computer for study and work",
+    "price": "1000",
+    "stock": "5",
+    "category": "Electronics"
 }
 
 ### Delet One Product

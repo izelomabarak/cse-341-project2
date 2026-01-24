@@ -1,0 +1,67 @@
+{
+"Product1": {
+    "name": "Marias",
+    "maker": "Gamesa",
+    "country": "Mexico",
+    "description": "Delicious cookies for all your family",
+    "price": "2",
+    "stock": "50",
+    "category": "Food"
+},
+"Product2": {
+    "name": "Lavender Chamomile",
+    "maker": "Bigelow",
+    "country": "United States of America",
+    "description": "A good and relaxing tea for your afternoons",
+    "price": "5.5",
+    "stock": "25",
+    "category": "Food"
+},
+"Product3": {
+    "name": "Acetaminophen",
+    "maker": "Johnson & Johnson",
+    "country": "United States of America",
+    "description": "Relieves minor aches and colds",
+    "price": "29",
+    "stock": "15",
+    "category": "Medicine"
+},
+"Product4": {
+    "name": "Aspirin",
+    "maker": "Bayer",
+    "country": "United States of America",
+    "description": "It helps with inflammation and acts as an antiseptic",
+    "price": "12",
+    "stock": "30",
+    "category": "Medicine"
+},
+"Product5": {
+    "name": "Samsung Smart TV Crystal 4K UHD",
+    "maker": "Samsung Electronics",
+    "country": "Vietnam",
+    "description": "A great and amazing TV for watching movies with your family",
+    "price": "570",
+    "stock": "5",
+    "category": "Electronics"
+},
+"Contact1": {
+    "firstName": "Alfonso",
+    "lastName": "Izelo",
+    "email": "josealfonsim.lds@gmail.com"
+},
+"Contact2": {
+    "firstName": "Sara",
+    "lastName": "Mabarak",
+    "email": "sara.@gmail.com"
+},
+"Contact3": {
+    "firstName": "Erica",
+    "lastName": "Izelo",
+    "email": "reicaizelo.lds@gmail.com"
+},
+"Contact4": {
+    "firstName": "Abel",
+    "lastName": "Izelo",
+    "email": "abelito.lds@gmail.com"
+}
+}
