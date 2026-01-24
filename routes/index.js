@@ -1,6 +1,7 @@
 const router = require('express').Router();
 
 router.use('/', require('./swagger'));
+const errorHandeler = require('../utilities/error.js')
 
 router.get('/', (req,res) => {
     //#swagger.tags=['Hello World']
