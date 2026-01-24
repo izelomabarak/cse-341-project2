@@ -2,17 +2,13 @@
 ### Get Home 
 GET http://localhost:3000/ 
 
-### Get All 
+### Get All User
 GET http://localhost:3000/users
 
-### Get One by Id 
+### Get One by Id User
 GET http://localhost:3000/users/6972c2034f3b8eb1300f829b  
-###
-GET http://localhost:3000/users/696992404effa511e0807fcd 
-###
-GET http://localhost:3000/users/696992574effa511e0807fce
 
-### Create a new one
+### Create a new one User
 POST http://localhost:3000/users/ HTTP/1.1
 Content-Type: application/json
 
@@ -24,7 +20,7 @@ Content-Type: application/json
     "birthday": "17/03/1965"
 }
 
-### Modifiy One
+### Modifiy One User
 PUT http://localhost:3000/users/696992254effa511e0807fcc HTTP/1.1
 Content-Type: application/json
 
@@ -36,7 +32,35 @@ Content-Type: application/json
     "birthday": "20/05/2008"
 }
 
-### Delet One
-DELETE http://localhost:3000/users/696afbe69178f213663e515d
+### Get All Products
+GET http://localhost:3000/products
 
-// PRODUCTION Deploy ### GET https://project-1-tdhp.onrender.com/ ### GET https://project-1-tdhp.onrender.com/users ### GET https://project-1-tdhp.onrender.com/users/69615eaefa7e5002b8398223 ### GET https://project-1-tdhp.onrender.com/users/69615f57fa7e5002b8398224 ### GET https://project-1-tdhp.onrender.com/users/69615f68fa7e5002b8398225  
+### Get One by Id Product
+GET http://localhost:3000/products/6972c2034f3b8eb1300f829b  
+
+### Create a new one Product
+POST http://localhost:3000/products/ HTTP/1.1
+Content-Type: application/json
+
+{
+    "firstName": "Ernandez",
+    "lastName": "Cortez",
+    "email": "ernancortez.jss@gmail.com",
+    "favoriteColor": "brown",
+    "birthday": "17/03/1965"
+}
+
+### Modifiy One Product
+PUT http://localhost:3000/products/696992254effa511e0807fcc HTTP/1.1
+Content-Type: application/json
+
+{
+    "firstName": "Alfonso Izelo",
+    "lastName": "Izelo",
+    "email": "josealfonsoim.lds@gmail.com",
+    "favoriteColor": "red",
+    "birthday": "20/05/2008"
+}
+
+### Delet One Product
+DELETE http://localhost:3000/products/696afbe69178f213663e515d
