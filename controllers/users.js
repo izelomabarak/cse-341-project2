@@ -1,69 +1,44 @@
 const mongodb = require('../data/database');
 const ObjectId = require('mongodb').ObjectId;
 
-const getAll = async (req, res) => {
+const getAll = async () => {
     //#swagger.tags=['Users']
     const result = await mongodb.getDatabase().db().collection('users').find(); 
-    result.toArray().then((users) => {
-        res.setHeader('Content-Type', 'application/json');
-        res.status(200).json(users)
-   });
+    return result
 };
 
-const getSingle = async (req, res) => {
+const getSingle = async (userId) => {
     //#swagger.tags=['Users']
-    const userId = new ObjectId(req.params.id);
-    const result = await mongodb.getDatabase().db().collection('users').find({ _id: userId }); 
-    result.toArray().then((users) => {
-        res.setHeader('Content-Type', 'application/json');
-        res.status(200).json(users[0]);
-   });
+    const Id = new ObjectId(userId);
+    const result = await mongodb.getDatabase().db().collection('users').find({ _id: Id }); 
+    return result
 };
 
-const createUser = async (req, res) => {
+const createUser = async (user) => {
     //#swagger.tags=['Users']
-    const user = {
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email
-    };
     const response = await mongodb.getDatabase().db().collection('users').insertOne(user); 
-    if (response.acknowledged) {
-        const result = await mongodb.getDatabase().db().collection('users').find().sort({'_id':-1}).limit(1); 
-        result.toArray().then((users) => {
-            res.setHeader('Content-Type', 'application/json');
-            res.status(200).json(`The Id of the new user is:${users[0]._id}`);
-        });
-    } else {
-        res.status(500).json(response.error || 'Some error has hapen in the Creation of a User.')
-    }
+    const result = await mongodb.getDatabase().db().collection('users').find().sort({'_id':-1}).limit(1); 
+    return result
 };
  
-const updateUser = async (req, res) => {
+const updateUser = async (userId, user) => {
     //#swagger.tags=['Users']
-    const userId = new ObjectId(req.params.id);
-    const user = {
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email
-    };
-    const response = await mongodb.getDatabase().db().collection('users').replaceOne({ _id: userId }, user); 
+    const Id = new ObjectId(userId);
+    const response = await mongodb.getDatabase().db().collection('users').replaceOne({ _id: Id }, user); 
+    let result = "0" 
     if (response.modifiedCount > 0) {
-        res.status(200).json('The Updating of the User was successful');
+        result = "1"
     } else {
-        res.status(500).json(response.error || 'Some error has hapen in the Updating of the User.')
+        result = "2"
     }
+    return result
 };
 
-const deleteUser = async (req, res) => {
+const deleteUser = async (userId) => {
     //#swagger.tags=['Users']
-    const userId = new ObjectId(req.params.id);
-    const response = await mongodb.getDatabase().db().collection('users').deleteOne({ _id: userId }); 
-    if (response.deletedCount > 0) {
-        res.status(200).json('The Deleting of the User was successful');
-    } else {
-        res.status(500).json(response.error || 'Some error has hapen Deleting the User.')
-    }
+    const Id = new ObjectId(userId);
+    const response = await mongodb.getDatabase().db().collection('users').deleteOne({ _id: Id }); 
+    return response
 };
 
 module.exports = {

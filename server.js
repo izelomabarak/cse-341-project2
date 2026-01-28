@@ -19,7 +19,7 @@ app.use((req, res, next) => {
 app.use('/', require('./routes'));
 
 app.use(async (err, req, res, next) => {
-  res.setHeader('Content-Type', 'application/json')
+  res.setHeader('Content-Type', 'application/json');
   res.status(500).json({error: 'Error', message: err.message,});
 });
 

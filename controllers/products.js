@@ -1,77 +1,44 @@
 const mongodb = require('../data/database');
 const ObjectId = require('mongodb').ObjectId;
 
-const getAll = async (req, res) => {
+const getAll = async () => {
     //#swagger.tags=['Products']
     const result = await mongodb.getDatabase().db().collection('products').find(); 
-    result.toArray().then((products) => {
-        res.setHeader('Content-Type', 'application/json');
-        res.status(200).json(products)
-   });
+    return result
 };
 
-const getSingle = async (req, res) => {
+const getSingle = async (productId) => {
     //#swagger.tags=['Products']
-    const productId = new ObjectId(req.params.id);
-    const result = await mongodb.getDatabase().db().collection('products').find({ _id: productId }); 
-    result.toArray().then((products) => {
-        res.setHeader('Content-Type', 'application/json');
-        res.status(200).json(products[0]);
-   });
+    const id = new ObjectId(productId);
+    const result = await mongodb.getDatabase().db().collection('products').findOne({ _id: id }); 
+    return result
 };
 
-const createProduct = async (req, res) => {
+const createProduct = async (product) => {
     //#swagger.tags=['Products']
-    const product = {
-        name: req.body.name,
-        maker: req.body.maker,
-        country: req.body.country,
-        description: req.body.description,
-        price: req.body.price, 
-        stock: req.body.stock,
-        category: req.body.category
-    };
     const response = await mongodb.getDatabase().db().collection('products').insertOne(product); 
-    if (response.acknowledged) {
-        const result = await mongodb.getDatabase().db().collection('products').find().sort({'_id':-1}).limit(1); 
-        result.toArray().then((products) => {
-            res.setHeader('Content-Type', 'application/json');
-            res.status(200).json(`The Id of the new product is:${products[0]._id}`);
-        });
-    } else {
-        res.status(500).json(response.error || 'Some error has hapen in the Creation of a Product.')
-    }
+    const result = await mongodb.getDatabase().db().collection('products').find().sort({'_id':-1}).limit(1); 
+    return result
 };
  
-const updateProduct = async (req, res) => {
+const updateProduct = async (productId, product) => {
     //#swagger.tags=['Products']
-    const productId = new ObjectId(req.params.id);
-    const product = {
-        name: req.body.name,
-        maker: req.body.maker,
-        country: req.body.country,
-        description: req.body.description,
-        price: req.body.price, 
-        stock: req.body.stock,
-        category: req.body.category
-    };
-    const response = await mongodb.getDatabase().db().collection('products').replaceOne({ _id: productId }, product); 
+    const Id = new ObjectId(productId);
+    const response = await mongodb.getDatabase().db().collection('products').replaceOne({ _id: Id }, product);
+    let result = "0" 
     if (response.modifiedCount > 0) {
-        res.status(200).json('The Updating of the Product was successful');
+        result = "1"
     } else {
-        res.status(500).json(response.error || 'Some error has hapen in the Updating of the Product.')
+        result = "2"
     }
+    return result
 };
 
-const deleteProduct = async (req, res) => {
+const deleteProduct = async (productId) => {
     //#swagger.tags=['Products']
-    const productId = new ObjectId(req.params.id);
-    const response = await mongodb.getDatabase().db().collection('products').deleteOne({ _id: productId }); 
-    if (response.deletedCount > 0) {
-        res.status(200).json('The Deleting of the Product was successful');
-    } else {
-        res.status(500).json(response.error || 'Some error has hapen Deleting the Product.')
-    }
+    const Id = new ObjectId(productId);
+    const response = await mongodb.getDatabase().db().collection('products').deleteOne({ _id: Id }); 
+    return response
 };
 
 module.exports = {
