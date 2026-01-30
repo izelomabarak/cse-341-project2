@@ -1,9 +1,12 @@
 const express = require('express');
 const bodyParser =  require('body-parser');
-
+const dotenv = require('dotenv').config();
 const mongodb = require('./data/database');
-const app = express();
+const passport = require('passport');
+const session = require('express-session');
+const GitHubStrategy = require('passport-github2').Strategy;
 
+const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
@@ -17,6 +20,9 @@ app.use((req, res, next) => {
     next();
 });
 app.use('/', require('./routes'));
+
+
+
 
 app.use(async (err, req, res, next) => {
   res.setHeader('Content-Type', 'application/json');
