@@ -18,7 +18,7 @@ router.get('/', (req,res) => {
 router.use('/users', require('./users'));
 router.use('/products', require('./products'));
 
-router.get ('/login', passport.authenticate('github'), (req, res) => {});
+router.get ('/auth/github', passport.authenticate('github'), (req, res) => {});
 router.get ('/logout', function(req, res, next) {
     req.logout (function(err) {
         if (err) { return next(err); }
