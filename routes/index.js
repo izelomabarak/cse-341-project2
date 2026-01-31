@@ -3,10 +3,10 @@ const router = require('express').Router();
 
 router.use('/', require('./swagger'));
 
-router.get('/', (req, res) => {
-  res.setHeader('Content-Type', 'application/json');
-  res.send('Hello World');
-});
+// router.get('/', (req, res) => {
+//   res.setHeader('Content-Type', 'application/json');
+//   res.send('Hello World');
+// });
 
 router.use('/users', require('./users'));
 router.use('/products', require('./products'));
