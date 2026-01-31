@@ -30,7 +30,7 @@
         }
       }
     },
-    "/login": {
+    "/auth/github": {
       "get": {
         "description": "",
         "responses": {
