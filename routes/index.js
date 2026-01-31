@@ -16,25 +16,10 @@ router.get(
   passport.authenticate('github', { scope: ['user:email'] })
 );
 
-router.get(
-  '/auth/github/callback',
-  passport.authenticate('github', {
-    failureRedirect: '/api-docs'
-  }),
-  (req, res) => {
-    req.session.user = req.user;
-    res.redirect('/');
-  }
-);
-
 router.get('/logout', (req, res, next) => {
-  req.logout(err => {
-    if (err) return next(err);
-    req.session.destroy(err => {
-      if (err) return next(err);
-      res.clearCookie('connect.sid');
-      res.redirect('/');
-    });
+  req.logout(function(err) => {
+    if (err) { return next(err); }
+    res.redirect('/');
   });
 });
 
